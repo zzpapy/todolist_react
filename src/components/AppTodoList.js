@@ -17,7 +17,6 @@ class AppTodoList extends Component{
             inputVal:inputVal
         })
         console.log(e.target.value)
-        // May be call for search result
     }
     handleSubmit(event) {
         event.preventDefault();
@@ -38,7 +37,6 @@ class AppTodoList extends Component{
           document.getElementById('error').innerHTML = "Veuillez renseigner une tâche avant de valider"
           setTimeout(function(){ document.getElementById('error').innerHTML = ""}, 3000);
        }
-       console.log(this.state.inputVal)
       }
       Boucle(){
           let list = this.state.list
@@ -48,7 +46,8 @@ class AppTodoList extends Component{
                     {item}
                     <input type="hidden" name="item" value={index}/>
                     <button type="submit">X</button>
-                </form>                
+                </form> 
+                {console.log(item.state.done)}         
             </div>
         )
 
@@ -65,18 +64,18 @@ class AppTodoList extends Component{
         return(
            <div className="container">
                <h1>{this.state.list.length === 0 ? "Ajouter une tâche":("j'ai "+this.state.list.length+ (this.state.list.length > 1 ? " tâches":" tâche"))}  à réaliser </h1>
-               <div>               
-               {this.Boucle()}
-               </div>
                <form >
-                <input 
-                onChange={(e)=>this.ChangedHandler(e)}
-                type="text" 
-                value={this.state.inputVal}
-                
-                />
-                <button onClick={(e) => this.handleSubmit(e)} >valider</button>
-            </form>
+                    <input 
+                    onChange={(e)=>this.ChangedHandler(e)}
+                    type="text" 
+                    value={this.state.inputVal}
+                    
+                    />
+                    <button onClick={(e) => this.handleSubmit(e)} >valider</button>
+                </form>
+               <div>               
+                    {this.Boucle()}
+               </div>
            </div>
         )
     }
