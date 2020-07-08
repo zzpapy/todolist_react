@@ -6,6 +6,32 @@
   height: 40vmin;
   pointer-events: none;
 }
+.container{
+  max-width: 75%;
+  margin: auto;
+}
+.container h1{
+  text-align: center;
+}
+.delete{
+  max-width: 50%;
+  margin: 1em auto;
+}
+.flexList{
+  display: flex;
+  justify-content: space-between;
+}
+.done{
+  background-color:green;
+}
+.item{
+  padding: 0 1em;
+  margin-right: 1em;
+}
+.container form{
+  max-width: 50%;
+  margin: auto;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
