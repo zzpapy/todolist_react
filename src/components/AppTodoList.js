@@ -22,17 +22,23 @@ class AppTodoList extends Component{
     handleSubmit(event) {
         event.preventDefault();
         let list = this.state.list
-        list.push(<ItemList 
-            key = {event.target.value}
-            text = {this.state.inputVal} 
-            done = {false}
-            />)
-       console.log(event.target.value)
-       this.setState({
-           list : list,
-           inputVal:""
-        })
-       console.log(this.state.list)
+        if(this.state.inputVal != 0){
+            list.push(<ItemList 
+                key = {event.target.value}
+                text = {this.state.inputVal} 
+                done = {false}
+                />)
+           console.log(event.target.value)
+           this.setState({
+               list : list,
+               inputVal:""
+            })
+       }
+       else{
+          document.getElementById('error').innerHTML = "Veuillez renseigner une tâche avant de valider"
+          setTimeout(function(){ document.getElementById('error').innerHTML = ""}, 3000);
+       }
+       console.log(this.state.inputVal)
       }
       Boucle(){
           let list = this.state.list
@@ -58,7 +64,7 @@ class AppTodoList extends Component{
     render(){
         return(
            <div className="container">
-               <h1>{this.state.list.length > 1 ? "Tâches":"Tâche"}  à réaliser : {this.state.list.length} </h1>
+               <h1>{this.state.list.length === 0 ? "Ajouter une tâche":("j'ai "+this.state.list.length+ (this.state.list.length > 1 ? " tâches":" tâche"))}  à réaliser </h1>
                <div>               
                {this.Boucle()}
                </div>

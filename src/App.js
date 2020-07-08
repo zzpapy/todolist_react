@@ -7,6 +7,7 @@ class App extends Component {
   render(){
     return (
       <main>
+        <div id="error"></div>
         <AppTodoList/>
         
       </main>

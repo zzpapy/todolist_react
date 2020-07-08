@@ -32,6 +32,25 @@
   max-width: 50%;
   margin: auto;
 }
+#error{
+  max-width: 50%;
+  margin: auto;
+  animation: toto 0.8s backwards;
+}
+.hide{
+  display: none;
+}
+@keyframes toto{
+  0%{
+    background-color: transparent;
+  }
+  50%{
+    background-color: red;
+  }
+  100%{
+    background-color: transparent;
+  }
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
