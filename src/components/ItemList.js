@@ -6,20 +6,26 @@ class Itemlist extends Component{
         this.state = {
           count: 0,
           done : props.done,
-          hide: false,
+          hide : false,
           text : props.text
         };
       }
-      done(event){
+       done(event){
         event.preventDefault();
-        this.setState({
-            done : true,
-            hide:true
-        })
-        console.log(event.target.value)
+         this.setState({
+          done : true,
+          hide : true 
+        }, () => this.sendData())          
+    //  console.log(this.state)
+       
+      }
+         sendData = async () => {
+          this.props.parentCallback(this.props = (this.state));
       }
     render(){
         let tern = this.state.done ? "done":""
+
+        // console.log(this.state)
         return (
             <div>
                 <span className={"item "+tern}>{ this.state.text }</span>

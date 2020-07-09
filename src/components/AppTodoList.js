@@ -6,7 +6,8 @@ class AppTodoList extends Component{
         super(props)
         this.state = {
             list : [],
-            inputVal : ""
+            inputVal : "",
+            message : ""
         }
         // this.handleSubmit = this.handleSubmit.bind(this);
         this.delItem = this.delItem.bind(this)
@@ -16,18 +17,17 @@ class AppTodoList extends Component{
         this.setState({
             inputVal:inputVal
         })
-        console.log(e.target.value)
     }
     handleSubmit(event) {
         event.preventDefault();
         let list = this.state.list
         if(this.state.inputVal != 0){
-            list.push(<ItemList 
+            list.push(<ItemList parentCallback = {this.callbackFunction}
                 key = {event.target.value}
                 text = {this.state.inputVal} 
                 done = {false}
+                message =  ""
                 />)
-           console.log(event.target.value)
            this.setState({
                list : list,
                inputVal:""
@@ -38,16 +38,21 @@ class AppTodoList extends Component{
           setTimeout(function(){ document.getElementById('error').innerHTML = ""}, 3000);
        }
       }
+      callbackFunction = (childData) => {
+            this.setState({message: childData})
+        }
       Boucle(){
           let list = this.state.list
+          console.log(list)
          return list.map((item,index) => 
             <div key={index} className="delete">
-                <form  className="flexList" onSubmit={this.delItem.bind(this,item)}>
+                {index}
+                <form  className="flexList" >
                     {item}
                     <input type="hidden" name="item" value={index}/>
-                    <button type="submit">X</button>
+                    <button onClick={this.delItem.bind(this,item)} type="submit">X</button>
                 </form> 
-                {console.log(item.state.done)}         
+                {/* {console.log(item.props)} */}
             </div>
         )
 
@@ -56,7 +61,9 @@ class AppTodoList extends Component{
         event.preventDefault();
         let list = this.state.list
         let index = list.indexOf(item)
+        console.log(list)
         list.splice(index, 1)
+        console.log(list)
         this.setState({list : list})
       }
 
